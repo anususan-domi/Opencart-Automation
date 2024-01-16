@@ -1,0 +1,52 @@
+package day2;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LocatorsDemo1 {
+
+	public static void main(String[] args) {
+		
+		WebDriver driver=new ChromeDriver();
+		
+		driver.get("https://demo.opencart.com/");
+		driver.manage().window().maximize();
+		
+		//name
+		driver.findElement(By.name("search")).sendKeys("Mac");
+		
+		//id
+		Boolean logostatus=driver.findElement(By.id("logo")).isDisplayed();
+		System.out.println("Logo displayed status is :"+logostatus);
+		
+		//linkText
+		//driver.findElement(By.linkText("Tablets")).click();
+		//driver.findElement(By.partialLinkText("Table")).click();
+		
+		//class name
+		List<WebElement> headerlinks=driver.findElements(By.className("list-inline-item"));
+		System.out.println(headerlinks.size());
+		
+		
+		//tagname - total number of images
+		List<WebElement> images=driver.findElements(By.tagName("img"));
+		System.out.println("Total number of images:"+images.size());
+		
+		//tagname  - total number of links
+		List<WebElement> links=driver.findElements(By.tagName("a"));
+		System.out.println("total number of links:"+ links.size());
+		
+		for(WebElement lnk:links)
+		{
+			System.out.println(lnk.getText());
+			
+		}
+		
+		
+	}
+
+}
